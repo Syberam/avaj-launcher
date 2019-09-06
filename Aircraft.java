@@ -1,11 +1,13 @@
 class Aircraft {
-	//attributs
-	//# id : long
-	//# name : String
-	//# coordinates : Coordinates
-	//-idCounter : long
+	protected long id;
+	protected String name;
+	protected Coordinates coordinates;
+	private long idCounter;
 
-	//methods
-	//#Aircraft(name: String, coordinates: Coordinates)
-	//-nextId() : long
+	protected void Aircraft(String name, Coordinates coordinates){
+		if !name.isEmpty() {
+			this.name = name
+			self.coordinates = coordinates;
+		}
+	//private nextId() : long
 }
