@@ -1,13 +1,17 @@
-class Aircraft {
+abstract class Aircraft {
 	protected long id;
 	protected String name;
 	protected Coordinates coordinates;
-	private long idCounter;
+	private	static long idCounter = 0;
 
-	protected void Aircraft(String name, Coordinates coordinates){
-		if !name.isEmpty() {
-			this.name = name
-			self.coordinates = coordinates;
+	Aircraft(String name, Coordinates coordinates){
+		if (!name.isEmpty()) {
+			this.name = name; 
+			this.coordinates = coordinates;
+			Aircraft.idCounter = nextId();
 		}
-	//private nextId() : long
+	}
+	private long nextId() {
+		return Aircraft.idCounter + 1;
+	}
 }
