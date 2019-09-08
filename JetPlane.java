@@ -1,6 +1,6 @@
 class JetPlane extends Aircraft implements Flyable{
-    JetPlane(String name, Coordonates coordonates) {
-        super();
+    JetPlane(String name, Coordinates coordinates) {
+        super(name, coordinates);
     }
     
     public void updateConditions() {

@@ -4,15 +4,15 @@ class WeatherProvider {
 
 	WeatherProvider() {}
 
-	public WeatherProvider getProvider() {
+	public static WeatherProvider getProvider() {
 		return WeatherProvider.weatherProvider;
 	}
 
-	public getCurrentWeather(Coordinate coordinates) {
+	public String getCurrentWeather(Coordinates coordinates) {
 		int longitude = coordinates.getLongitude();
 		int latitude = coordinates.getLatitude();
 		int height = coordinates.getHeight();
-		int factor = Math.sqrt(longitude * latitude) + height;
+		int factor = (int)(Math.sqrt(longitude * latitude)) + height;
 
 		return weather[factor % 4];
 	}
