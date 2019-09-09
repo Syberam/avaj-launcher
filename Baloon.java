@@ -1,6 +1,8 @@
 class Baloon extends Aircraft implements Flyable {
-    Baloon(String name, Coordonates coordonates) {
-        super();
+	private WeatherTower weatherTower;
+
+    Baloon(String name, Coordinates coordinates) {
+        super(name, coordinates);
     }
     
     public void updateConditions() {
@@ -8,6 +10,7 @@ class Baloon extends Aircraft implements Flyable {
     }
 
     public void registerTower(WeatherTower weatherTower) {
-        System.out.println("registerTower method : not implemented");
+		this.weatherTower = weatherTower;
+		this.weatherTower.register(this);
     }
 }

@@ -1,4 +1,6 @@
 class JetPlane extends Aircraft implements Flyable{
+	private WeatherTower weatherTower;
+
     JetPlane(String name, Coordinates coordinates) {
         super(name, coordinates);
     }
@@ -8,6 +10,7 @@ class JetPlane extends Aircraft implements Flyable{
     }
 
     public void registerTower(WeatherTower weatherTower) {
-        System.out.println("registerTower method : not implemented");
+		this.weatherTower = weatherTower;
+		this.weatherTower.register(this);
     }
 }

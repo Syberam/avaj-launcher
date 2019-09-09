@@ -1,7 +1,8 @@
 class Helicopter extends Aircraft implements Flyable {
+	private WeatherTower weatherTower;
 
     Helicopter(String name, Coordonates coordonates) {
-        super();
+        super(name, coordinates);
     }
 
     public void updateConditions() {
@@ -9,6 +10,7 @@ class Helicopter extends Aircraft implements Flyable {
     }
 
     public void registerTower(WeatherTower weatherTower) {
-        System.out.println("registerTower method : not implemented");
+		this.weatherTower = weatherTower;
+		this.weatherTower.register(this);
     }
 }

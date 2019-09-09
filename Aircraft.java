@@ -11,7 +11,16 @@ abstract class Aircraft {
 			Aircraft.idCounter = nextId();
 		}
 	}
+
 	private long nextId() {
 		return Aircraft.idCounter + 1;
+	}
+
+	public String getName() {
+		return this.name;
+	}
+
+	public long getId() {
+		return this.id;
 	}
 }
