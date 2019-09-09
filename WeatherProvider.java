@@ -12,8 +12,6 @@ class WeatherProvider {
 		int longitude = coordinates.getLongitude();
 		int latitude = coordinates.getLatitude();
 		int height = coordinates.getHeight();
-		int factor = (int)(Math.sqrt(longitude * latitude)) + height;
-
-		return weather[factor % 4];
+		return weather[(longitude % 3 + latitude % 3 + height % 3) % 4];
 	}
 }

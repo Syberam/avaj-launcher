@@ -8,6 +8,7 @@ abstract class Aircraft {
 		if (!name.isEmpty()) {
 			this.name = name; 
 			this.coordinates = coordinates;
+			this.id = Aircraft.idCounter;
 			Aircraft.idCounter = nextId();
 		}
 	}
