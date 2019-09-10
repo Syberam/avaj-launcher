@@ -7,12 +7,7 @@ class Baloon extends Aircraft implements Flyable {
     
     public void updateConditions() {
 		String weather = weatherTower.getWeather(coordinates);
-		System.out.print(
-			String.format("Baloon#%s(%d): ",
-				this.getName(),
-				this.getId()
-			)
-		);
+		System.out.print(annonce());
 		switch(weather) {
 			case "SUN":
 				System.out.println(
@@ -46,7 +41,7 @@ class Baloon extends Aircraft implements Flyable {
 				break;
 			case "SNOW":
 				System.out.println(
-					"Too cold to keep altitude !!!"
+					"It's snowing. We're gonna crash."
 				);
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),

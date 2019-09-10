@@ -8,13 +8,12 @@ abstract class Aircraft {
 		if (!name.isEmpty()) {
 			this.name = name; 
 			this.coordinates = coordinates;
-			this.id = Aircraft.idCounter;
-			Aircraft.idCounter = nextId();
+			this.id = nextId();
 		}
 	}
 
 	private long nextId() {
-		return Aircraft.idCounter + 1;
+		return ++Aircraft.idCounter;
 	}
 
 	public String getName() {
@@ -23,5 +22,13 @@ abstract class Aircraft {
 
 	public long getId() {
 		return this.id;
+	}
+
+	public String annonce() {
+		return String.format("%s#%s(%d): ",
+				this.getClass().getName(),
+				this.name,
+				this.id
+			);
 	}
 }

@@ -7,16 +7,11 @@ class Helicopter extends Aircraft implements Flyable {
 
     public void updateConditions() {
         String weather = weatherTower.getWeather(coordinates);
-		System.out.print(
-			String.format("Helicopter#%s(%d): ",
-				this.getName(),
-				this.getId()
-			)
-		);
+		System.out.print(annonce());
 		switch(weather) {
 			case "SUN":
 				System.out.println(
-					"Let's enjoy the good weather and take some pics."
+					"This is hot."
 				);
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude() + 10,
@@ -26,7 +21,7 @@ class Helicopter extends Aircraft implements Flyable {
 				break;
 			case "RAIN":
 				System.out.println(
-					"Damn you rain! You messed up my baloon."
+					"I'm singing in the rain !"
 				);
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude() + 5,
@@ -36,7 +31,7 @@ class Helicopter extends Aircraft implements Flyable {
 				break;
 			case "FOG":
 				System.out.println(
-					"I can't see anything !"
+					"Let's go out of this cloud !"
 				);
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude() + 1,
@@ -46,7 +41,7 @@ class Helicopter extends Aircraft implements Flyable {
 				break;
 			case "SNOW":
 				System.out.println(
-					"Too cold to keep altitude !!!"
+					"My rotor is going to freeze!"
 				);
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),

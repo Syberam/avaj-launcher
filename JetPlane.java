@@ -7,16 +7,11 @@ class JetPlane extends Aircraft implements Flyable{
     
     public void updateConditions() {
 		String weather = weatherTower.getWeather(coordinates);
-		System.out.print(
-			String.format("JetPlane#%s(%d): ",
-				this.getName(),
-				this.getId()
-			)
-		);
+		System.out.print(annonce());
 		switch(weather) {
 			case "SUN":
 				System.out.println(
-					"Let's enjoy the good weather and take some pics."
+					"Put your sun glasses"
 				);
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),
@@ -26,7 +21,7 @@ class JetPlane extends Aircraft implements Flyable{
 				break;
 			case "RAIN":
 				System.out.println(
-					"Damn you rain! You messed up my baloon."
+					"It's raining. Better watch out for lightings."
 				);
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),
@@ -36,7 +31,7 @@ class JetPlane extends Aircraft implements Flyable{
 				break;
 			case "FOG":
 				System.out.println(
-					"I can't see anything !"
+					"What an overcast afternoon."
 				);
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),
@@ -46,7 +41,7 @@ class JetPlane extends Aircraft implements Flyable{
 				break;
 			case "SNOW":
 				System.out.println(
-					"Too cold to keep altitude !!!"
+					"OMG! Winter is coming!"
 				);
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),
@@ -57,12 +52,8 @@ class JetPlane extends Aircraft implements Flyable{
 		}
 
 		if (this.coordinates.getHeight() == 0){
-			System.out.println(
-				String.format("JetPlane#%s(%d): Landing.",
-					this.getName(),
-					this.getId()
-				)
-			);
+			System.out.print(annonce());
+			System.out.println("Landing.");
 			this.weatherTower.unregister(this);
 		}
     }
