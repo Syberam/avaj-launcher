@@ -21,6 +21,10 @@ abstract class Aircraft {
 		return ++Aircraft.idCounter;
 	}
 
+	public String getType() {
+		return this.getClass().getSimpleName();
+	}
+
 	public String getName() {
 		return this.name;
 	}
@@ -31,7 +35,7 @@ abstract class Aircraft {
 
 	public String annonce() {
 		return String.format("%s#%s(%d): ",
-				this.getClass().getSimpleName(),
+				this.getType(),
 				this.name,
 				this.id
 			);

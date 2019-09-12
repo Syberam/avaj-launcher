@@ -14,7 +14,7 @@ class Tower {
 		this.observers.add(flyable);
 		System.out.println(
 			String.format("Tower says: %s#%s(%d) registered to weather tower.",
-					flyable.getClass().getName(),
+					flyable.getType(),
 					flyable.getName(),
 					flyable.getId()
 				)
@@ -26,7 +26,7 @@ class Tower {
 			this.observers.remove(flyable);
 			System.out.println(
 				String.format("Tower says: %s#%s(%d) unregistered from weather tower.",
-						flyable.getClass().getName(),
+						flyable.getType(),
 						flyable.getName(),
 						flyable.getId()
 					)
