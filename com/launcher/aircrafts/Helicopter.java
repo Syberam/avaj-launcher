@@ -1,65 +1,69 @@
-package com.avaj_launcher.aircrafs;
+package com.launcher.aircrafts;
 
-import com.avaj_launcher.airport.WeatherTower;
-import com.avaj_launcher.conditions.Coordinates;
+import com.launcher.airport.WeatherTower;
+import com.launcher.conditions.Coordinates;
 
 
-class JetPlane extends Aircraft implements Flyable{
+class Helicopter extends Aircraft implements Flyable {
 	private WeatherTower weatherTower;
 
-    JetPlane(String name, Coordinates coordinates) {
+    Helicopter(String name, Coordinates coordinates) {
         super(name, coordinates);
-	}
-    
+    }
+
     public void updateConditions() {
-		String weather = weatherTower.getWeather(coordinates);
+        String weather = weatherTower.getWeather(coordinates);
 		System.out.print(this.annonce());
 		switch(weather) {
 			case "SUN":
 				System.out.println(
-					"Put your sun glasses"
+					"This is hot."
 				);
 				this.coordinates = new Coordinates(
-					this.coordinates.getLongitude(),
-					this.coordinates.getLatitude() + 10,
+					this.coordinates.getLongitude() + 10,
+					this.coordinates.getLatitude(),
 					this.coordinates.getHeight() + 2
 				);
 				break;
 			case "RAIN":
 				System.out.println(
-					"It's raining. Better watch out for lightings."
+					"I'm singing in the rain !"
 				);
 				this.coordinates = new Coordinates(
-					this.coordinates.getLongitude(),
-					this.coordinates.getLatitude() + 5,
+					this.coordinates.getLongitude() + 5,
+					this.coordinates.getLatitude(),
 					this.coordinates.getHeight()
 				);
 				break;
 			case "FOG":
 				System.out.println(
-					"What an overcast afternoon."
+					"Let's go out of this cloud !"
 				);
 				this.coordinates = new Coordinates(
-					this.coordinates.getLongitude(),
-					this.coordinates.getLatitude() + 1,
+					this.coordinates.getLongitude() + 1,
+					this.coordinates.getLatitude(),
 					this.coordinates.getHeight()
 				);
 				break;
 			case "SNOW":
 				System.out.println(
-					"OMG! Winter is coming!"
+					"My rotor is going to freeze!"
 				);
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),
 					this.coordinates.getLatitude(),
-					this.coordinates.getHeight() - 7
+					this.coordinates.getHeight() - 12
 				);
 				break;
 		}
 
 		if (this.coordinates.getHeight() == 0){
-			System.out.print(annonce());
-			System.out.println("Landing.");
+			System.out.println(
+				String.format("Helicopter#%s(%d): Landing.",
+					this.getName(),
+					this.getId()
+				)
+			);
 			this.weatherTower.unregister(this);
 		}
     }

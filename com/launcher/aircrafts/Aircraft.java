@@ -1,6 +1,6 @@
-package com.avaj_launcher.aircrafs;
+package com.launcher.aircrafts;
 
-import com.avaj_launcher.conditions.Coordinates;
+import com.launcher.conditions.Coordinates;
 
 
 abstract class Aircraft {
@@ -31,7 +31,7 @@ abstract class Aircraft {
 
 	public String annonce() {
 		return String.format("%s#%s(%d): ",
-				this.getClass().getName(),
+				this.getClass().getSimpleName(),
 				this.name,
 				this.id
 			);

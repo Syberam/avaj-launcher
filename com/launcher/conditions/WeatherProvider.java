@@ -1,4 +1,4 @@
-package com.avaj_launcher.conditions;
+package com.launcher.conditions;
 
 public class WeatherProvider {
 	private static WeatherProvider weatherProvider = new WeatherProvider();

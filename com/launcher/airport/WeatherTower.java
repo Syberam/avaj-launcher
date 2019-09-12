@@ -1,7 +1,7 @@
-package com.avaj_launcher.airport;
+package com.launcher.airport;
 
-import com.avaj_launcher.conditions.Coordinates;
-import com.avaj_launcher.conditions.WeatherProvider;
+import com.launcher.conditions.Coordinates;
+import com.launcher.conditions.WeatherProvider;
 
 
 public class WeatherTower extends Tower {
@@ -9,7 +9,7 @@ public class WeatherTower extends Tower {
 		return WeatherProvider.getProvider().getCurrentWeather(coordinates);
 	}
 
-	private void changeWeather(){
+	void changeWeather(){
 		this.conditionsChanged();
 	}
 }

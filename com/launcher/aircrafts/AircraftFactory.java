@@ -1,6 +1,6 @@
-package com.avaj_launcher.aircrafs;
+package com.launcher.aircrafts;
 
-import com.avaj_launcher.conditions.Coordinates;
+import com.launcher.conditions.Coordinates;
 
 
 public class AircraftFactory {

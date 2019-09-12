@@ -1,8 +1,8 @@
-package com.avaj_launcher.airport;
+package com.launcher.airport;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.avaj_launcher.aircrafts.Flyable;
+import com.launcher.aircrafts.Flyable;
 
 
 class Tower {
