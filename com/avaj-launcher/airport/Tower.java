@@ -1,5 +1,9 @@
+package com.avaj_launcher.airport;
+
 import java.util.ArrayList;
 import java.util.List;
+import com.avaj_launcher.aircrafts.Flyable;
+
 
 class Tower {
 	private List<Flyable> observers = new ArrayList<Flyable>();
@@ -40,6 +44,6 @@ class Tower {
 	}
 
 	public int countObservers(){
-		return observers.size();
+		return this.observers.size();
 	}
 }

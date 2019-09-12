@@ -1,3 +1,9 @@
+package com.avaj_launcher.aircrafs;
+
+import com.avaj_launcher.airport.WeatherTower;
+import com.avaj_launcher.conditions.Coordinates;
+
+
 class Helicopter extends Aircraft implements Flyable {
 	private WeatherTower weatherTower;
 
@@ -7,7 +13,7 @@ class Helicopter extends Aircraft implements Flyable {
 
     public void updateConditions() {
         String weather = weatherTower.getWeather(coordinates);
-		System.out.print(annonce());
+		System.out.print(this.annonce());
 		switch(weather) {
 			case "SUN":
 				System.out.println(

@@ -1,9 +1,11 @@
-class Coordinates {
+package com.avaj_launcher.conditions;
+
+public class Coordinates {
     private int longitude;
     private int latitude;
     private int height;
 
-    Coordinates(int longitude, int latitude, int height) {
+    public Coordinates(int longitude, int latitude, int height) {
         this.longitude = Math.max(0, longitude);
         this.latitude = Math.max(0, latitude);
         this.height = Math.min(100, Math.max(0, height)); 

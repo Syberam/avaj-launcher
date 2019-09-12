@@ -1,3 +1,8 @@
+package com.avaj_launcher.aircrafs;
+
+import com.avaj_launcher.conditions.Coordinates;
+
+
 abstract class Aircraft {
 	protected long id;
 	protected String name;

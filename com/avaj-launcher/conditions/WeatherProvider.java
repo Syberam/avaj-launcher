@@ -1,4 +1,6 @@
-class WeatherProvider {
+package com.avaj_launcher.conditions;
+
+public class WeatherProvider {
 	private static WeatherProvider weatherProvider = new WeatherProvider();
 	private static String[] weather = {"SUN", "RAIN", "FOG", "SNOW"};
 
