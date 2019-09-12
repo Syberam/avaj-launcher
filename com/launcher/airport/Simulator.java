@@ -22,7 +22,9 @@ public class Simulator {
 			line = bufferedReader.readLine();
 			rounds = Integer.parseInt(line);
 			while((line = bufferedReader.readLine()) != null) {
-				String[] aircraftData = line.split(" ");
+				String[] aircraftData = line.trim()
+											.replaceAll(" +", " ")
+											.split(" ");
 				if (aircraftData.length == 5) {
 					try {
 						String aircraftType = aircraftData[0];
