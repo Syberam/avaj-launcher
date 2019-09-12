@@ -14,48 +14,52 @@ public class Simulator {
 			fileName = args[0];
 		}
 		String line = null;
-
-        try {
-            FileReader fileReader = 
-                new FileReader(fileName);
-            BufferedReader bufferedReader = 
+		try {
+			FileReader fileReader = 
+				new FileReader(fileName);
+			BufferedReader bufferedReader =
 				new BufferedReader(fileReader);
 			line = bufferedReader.readLine();
-			// Should try catch ?
 			rounds = Integer.parseInt(line);
-            while((line = bufferedReader.readLine()) != null) {
-                System.out.println(line);
-            }   
-            bufferedReader.close();         
-        }
-        catch(FileNotFoundException ex) {
-            System.out.println(
-                "Unable to open file '" + 
-                fileName + "'");                
-        }
-        catch(IOException ex) {
-            System.out.println(
-                "Error reading file '" 
-                + fileName + "'");                  
-        }
+			while((line = bufferedReader.readLine()) != null) {
+				String[] aircraftData = line.split(" ");
+				if (aircraftData.length == 5) {
+					try {
+						String aircraftType = aircraftData[0];
+						String aircraftName = aircraftData[1];
+						int longitude = Integer.parseInt(aircraftData[2]);
+						int latitude = Integer.parseInt(aircraftData[3]);
+						int height = Integer.parseInt(aircraftData[4]);
+						Flyable flyable = AircraftFactory.newAircraft(
+							aircraftType,
+							aircraftName,
+							longitude,
+							latitude,
+							height);
+							flyable.registerTower(wt);
+					}
+					catch(NumberFormatException ex) {
+						System.out.println("Invalid coordinate: " +
+						ex.getMessage() + " in " + "\"" + line + "\"");
+					}
+				}
+			}
+			bufferedReader.close();
+		}
+		catch(FileNotFoundException ex) {
+			System.out.println(
+				"Unable to open file '" +
+				fileName + "'");
+		}
+		catch(IOException ex) {
+			System.out.println(
+				"Error reading file '" 
+				+ fileName + "'");
+		}
+		catch(NumberFormatException ex) {
+				System.out.println("Invalid number of rounds: " + ex.getMessage());
+			}
 
-
-
-
-
-
-
-
-		Flyable planeCB = AircraftFactory.newAircraft("JetPlane", "CharlyBravo", 30, 30, 30);
-		Flyable planeZQ = AircraftFactory.newAircraft("JetPlane", "ZuluQuebec", 12, 15, 9);
-		Flyable baloonAT = AircraftFactory.newAircraft("Baloon", "AlphaTango", 12, 15, 9);
-		Flyable helicopterDF = AircraftFactory.newAircraft("Helicopter", "DeltaFoxtrot", 5, 10, 60);
-
-		
-		planeCB.registerTower(wt);
-		planeZQ.registerTower(wt);
-		baloonAT.registerTower(wt);
-		helicopterDF.registerTower(wt);
 		for (int i = 0; i < rounds; i++){
 			wt.changeWeather();
 			if (wt.countObservers() == 0 ){
@@ -63,6 +67,4 @@ public class Simulator {
 			}
 		}
 	}
-
-
 }
