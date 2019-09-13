@@ -44,10 +44,12 @@ public class Simulator {
 					}
 					catch(InvalidAircraftException ex) {
 						System.out.println(ex.getMessage());
+						System.exit(-1);
 					}
 					catch(NumberFormatException ex) {
 						System.out.println("Invalid coordinate: " +
 						ex.getMessage() + " in " + "\"" + line + "\"");
+						System.exit(-1);
 					}
 				}
 			}
@@ -58,26 +60,28 @@ public class Simulator {
 				"Unable to open file '" +
 				fileName + "'");
 			System.out.println(usage());
-			
+			System.exit(-1);			
 		}
 		catch(IOException ex) {
 			System.out.println(
 				"Error reading file '" 
 				+ fileName + "'");
 			System.out.println(usage());
+			System.exit(-1);
 		}
 		catch(NumberFormatException ex) {
 				System.out.println(
 					"Invalid number of rounds: "
 					+ ex.getMessage());
 				System.out.println(usage());
+				System.exit(-1);
 			}
 
 		for (int i = 0; i < rounds; i++){
 			wt.changeWeather();
-			// if (wt.countObservers() == 0 ){
-			// 	break;
-			// }
+			if (wt.countObservers() == 0 ){
+				break;
+			}
 		}
 	}
 
