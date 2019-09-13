@@ -3,8 +3,10 @@ package com.launcher.airport;
 import java.io.*;
 import com.launcher.aircrafts.AircraftFactory;
 import com.launcher.aircrafts.Flyable;
+import com.launcher.aircrafts.InvalidAircraftException;
 
 public class Simulator {
+	static boolean firstRead = true;
 	public static void main(String[] args){
 		WeatherTower wt = new WeatherTower();
 		int rounds = 0;
@@ -40,6 +42,9 @@ public class Simulator {
 							height);
 							flyable.registerTower(wt);
 					}
+					catch(InvalidAircraftException ex) {
+						System.out.println(ex.getMessage());
+					}
 					catch(NumberFormatException ex) {
 						System.out.println("Invalid coordinate: " +
 						ex.getMessage() + " in " + "\"" + line + "\"");
@@ -70,17 +75,19 @@ public class Simulator {
 
 		for (int i = 0; i < rounds; i++){
 			wt.changeWeather();
-			if (wt.countObservers() == 0 ){
-				break;
-			}
+			// if (wt.countObservers() == 0 ){
+			// 	break;
+			// }
 		}
 	}
 
 	public static void printer(String line) throws IOException {
-		String str = "World";
-		BufferedWriter writer = new BufferedWriter(new FileWriter("simulation.txt", true));
-		writer.append(System.getProperty("line.separator"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter("simulation.txt", !Simulator.firstRead));
+		if (Simulator.firstRead) {
+			Simulator.firstRead = false;
+		}
 		writer.append(line);
+		writer.append(System.getProperty("line.separator"));
 		writer.close();
 	}
 
