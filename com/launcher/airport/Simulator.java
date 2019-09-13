@@ -86,6 +86,7 @@ public class Simulator {
 		if (Simulator.firstRead) {
 			Simulator.firstRead = false;
 		}
+
 		writer.append(line);
 		writer.append(System.getProperty("line.separator"));
 		writer.close();

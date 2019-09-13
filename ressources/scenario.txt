@@ -15,5 +15,5 @@ Baloon B4 102 22 34
 Baloon B4 34 102 22
 Baloon B5 34 22 102
 Baloon B6 22 33 698
-JetPlane J4 500 6 500
-JetPlane J5 500 500 6
+JetPlane J3 500 6 500
+JetPlane J4 500 500 6
