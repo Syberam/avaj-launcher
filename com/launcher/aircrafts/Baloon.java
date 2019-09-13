@@ -2,6 +2,8 @@ package com.launcher.aircrafts;
 
 import com.launcher.airport.WeatherTower;
 import com.launcher.conditions.Coordinates;
+import com.launcher.airport.Simulator;
+import java.io.IOException;
 
 
 class Baloon extends Aircraft implements Flyable {
@@ -13,12 +15,11 @@ class Baloon extends Aircraft implements Flyable {
     
     public void updateConditions() {
 		String weather = weatherTower.getWeather(coordinates);
-		System.out.print(this.annonce());
+		String baloonSays = new String();
+
 		switch(weather) {
 			case "SUN":
-				System.out.println(
-					"Let's enjoy the good weather and take some pics."
-				);
+				baloonSays = "Let's enjoy the good weather and take some pics.";
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude() + 2,
 					this.coordinates.getLatitude(),
@@ -26,9 +27,7 @@ class Baloon extends Aircraft implements Flyable {
 				);
 				break;
 			case "RAIN":
-				System.out.println(
-					"Damn you rain! You messed up my baloon."
-				);
+				baloonSays = "Damn you rain! You messed up my baloon.";
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),
 					this.coordinates.getLatitude(),
@@ -36,9 +35,7 @@ class Baloon extends Aircraft implements Flyable {
 				);
 				break;
 			case "FOG":
-				System.out.println(
-					"I can't see anything !"
-				);
+				baloonSays = "I can't see anything !";
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),
 					this.coordinates.getLatitude(),
@@ -46,9 +43,7 @@ class Baloon extends Aircraft implements Flyable {
 				);
 				break;
 			case "SNOW":
-				System.out.println(
-					"It's snowing. We're gonna crash."
-				);
+				baloonSays = "It's snowing. We're gonna crash.";
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),
 					this.coordinates.getLatitude(),
@@ -56,14 +51,26 @@ class Baloon extends Aircraft implements Flyable {
 				);
 				break;
 		}
+		try {
+			Simulator.printer(
+				this
+				.annonce()
+				.concat(": ")
+				.concat(baloonSays)
+			);
+		}
+		catch(IOException ex) { System.out.println(ex.getMessage());}
 
 		if (this.coordinates.getHeight() == 0){
-			System.out.println(
-				String.format("Baloon#%s(%d): Landing.",
-					this.getName(),
-					this.getId()
-				)
-			);
+			try {
+				Simulator.printer(
+					this
+					.annonce()
+					.concat(": ")
+					.concat("Landing")
+				);
+			}
+			catch(IOException ex) { System.out.println(ex.getMessage());}
 			this.weatherTower.unregister(this);
 		}
     }

@@ -9,4 +9,5 @@ public interface Flyable {
 	public String getName();
 	public String getType();
 	public long getId();
+	public String annonce();
 }

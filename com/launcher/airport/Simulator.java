@@ -76,6 +76,14 @@ public class Simulator {
 		}
 	}
 
+	public static void printer(String line) throws IOException {
+		String str = "World";
+		BufferedWriter writer = new BufferedWriter(new FileWriter("simulation.txt", true));
+		writer.append(System.getProperty("line.separator"));
+		writer.append(line);
+		writer.close();
+	}
+
 	static String usage() {
 		return String.join(
 			System.getProperty("line.separator")

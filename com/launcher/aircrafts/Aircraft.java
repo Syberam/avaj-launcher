@@ -34,7 +34,7 @@ abstract class Aircraft {
 	}
 
 	public String annonce() {
-		return String.format("%s#%s(%d): ",
+		return String.format("%s#%s(%d)",
 				this.getType(),
 				this.name,
 				this.id

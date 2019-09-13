@@ -2,6 +2,9 @@ package com.launcher.aircrafts;
 
 import com.launcher.airport.WeatherTower;
 import com.launcher.conditions.Coordinates;
+import com.launcher.airport.Simulator;
+import java.io.IOException;
+
 
 
 class Helicopter extends Aircraft implements Flyable {
@@ -12,13 +15,12 @@ class Helicopter extends Aircraft implements Flyable {
     }
 
     public void updateConditions() {
-        String weather = weatherTower.getWeather(coordinates);
-		System.out.print(this.annonce());
+		String weather = weatherTower.getWeather(coordinates);
+		String helicopterSays = new String();
+
 		switch(weather) {
 			case "SUN":
-				System.out.println(
-					"This is hot."
-				);
+				helicopterSays = "This is hot.";
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude() + 10,
 					this.coordinates.getLatitude(),
@@ -26,9 +28,7 @@ class Helicopter extends Aircraft implements Flyable {
 				);
 				break;
 			case "RAIN":
-				System.out.println(
-					"I'm singing in the rain !"
-				);
+				helicopterSays = "I'm singing in the rain !";
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude() + 5,
 					this.coordinates.getLatitude(),
@@ -36,9 +36,7 @@ class Helicopter extends Aircraft implements Flyable {
 				);
 				break;
 			case "FOG":
-				System.out.println(
-					"Let's go out of this cloud !"
-				);
+				helicopterSays = "Let's go out of this cloud !";
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude() + 1,
 					this.coordinates.getLatitude(),
@@ -46,9 +44,7 @@ class Helicopter extends Aircraft implements Flyable {
 				);
 				break;
 			case "SNOW":
-				System.out.println(
-					"My rotor is going to freeze!"
-				);
+				helicopterSays = "My rotor is going to freeze!";
 				this.coordinates = new Coordinates(
 					this.coordinates.getLongitude(),
 					this.coordinates.getLatitude(),
@@ -56,14 +52,25 @@ class Helicopter extends Aircraft implements Flyable {
 				);
 				break;
 		}
+		try {
+			Simulator.printer(
+				this
+				.annonce()
+				.concat(": ")
+				.concat(helicopterSays)
+			);
+		}
+		catch(IOException ex) { System.out.println(ex.getMessage());}
 
 		if (this.coordinates.getHeight() == 0){
-			System.out.println(
-				String.format("Helicopter#%s(%d): Landing.",
-					this.getName(),
-					this.getId()
-				)
-			);
+			try {
+				Simulator.printer(
+					this.annonce()
+					.concat(": ")
+					.concat("Landing")
+				);
+			}
+			catch(IOException ex) { System.out.println(ex.getMessage());}
 			this.weatherTower.unregister(this);
 		}
     }
